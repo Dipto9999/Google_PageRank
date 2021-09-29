@@ -30,7 +30,7 @@ The source and header files were written to be compiled and run in the <b>Visual
 Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reveals that the system path for (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`) is specified for the <b>C/C++ Additional Include Directories</b>. Similarly, I modified the <b>Linker Additional Library Directories</b> to include (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`). The <b>Debugging Configuration</b> has the <b>Environment</b> set to (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`)
 
 <p align="center">
-    <img src="Figures/VS_Configuration_Properties.JPG" width="40%" height="40%" title="Configuration Properties Window." >
+    <img src="Figures/VS_Configuration_Properties.JPG" width="50%" height="50%" title="Configuration Properties Window." >
 </p>
 
 ### MATLAB 2021a
@@ -77,7 +77,7 @@ In mathematical representation, we are solving for the variable <i>x</i> where <
 After normalizing <i>x</i> with the <b>MATLAB</b> command `x = x/ sum(x);`, this yields the <b>PageRank</b> approximation for the probability of a random web surfer accessing each of the webpages.
 
 <p align="center">
-    <img src="Figures/Approximation.JPG" width="40%" height="40%" title="Approximate Calculation." >
+    <img src="Figures/Approximation.JPG" width="30%" height="30%" title="Approximate Calculation." >
 </p>
 
 The complete <b>MATLAB</b> output can be view in the [(`Approximation.pdf`)](Figures/Approximation.pdf) file.
@@ -108,7 +108,7 @@ In order to do this, I executed the <b>MATLAB</b> command :
 The current and previous <b>PageRank</b> values are compared in order to perform the necessary number of <b>PageRank</b> iterations.
 
 <p align="center">
-    <img src="Figures/Power_Method.JPG" width="40%" height="40%" title="Power Method Calculation." >
+    <img src="Figures/Power_Method.JPG" width="50%" height="50%" title="Power Method Calculation." >
 </p>
 
 The complete <b>MATLAB</b> output can be view in the [(`Power_Method.pdf`)](Figures/Power_Method.pdf) file.
@@ -122,13 +122,13 @@ Repeatedly multiplying the <b>Transition Matrix</b> by the <b>PageRank</b> can b
 This is the mathematical formula for an eigenvector. From this, I deduced that the <b>PageRank Algorithm</b>, as calculated by the <b>Power Method</b>, represents a system that evolves after every step. The <b>Transition Matrix</b> pulls the <b>PageRank</b> towards the principal eigenvector. This is best viewed in this visual from the <b><a href = "https://setosa.io/ev/eigenvectors-and-eigenvalues/">Eigenvectors and Eigenvalues</a></b> web post.
 
 <p align="center">
-    <img src="Figures/Eigenvector_Visual.JPG" width="40%" height="40%" title="Eigenvector Visual." >
+    <img src="Figures/Eigenvector_Visual.JPG" width="75%" height="75%" title="Eigenvector Visual." >
 </p>
 
 To evaluate this, I calculated the principal eigenvector in the <b>MATLAB Engine</b>, as shown below.
 
 <p align="center">
-    <img src="Figures/Principal_Eigenvector.JPG" width="40%" height="40%" title="Principal Eigenvector Calculation." >
+    <img src="Figures/Principal_Eigenvector.JPG" width="35%" height="35%" title="Principal Eigenvector Calculation." >
 </p>
 
 The complete <b>MATLAB</b> output can be view in the [(`Principal_Eigenvector.pdf`)](Figures/Principal_Eigenvector.pdf) file.
