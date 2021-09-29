@@ -27,11 +27,13 @@ I implemented a simplified version of the <b>Google PageRank</b> algorithm. This
 
 The source and header files were written to be compiled and run in the <b>Visual Studio 2019 IDE</b>. The [(`CPSC259_Lab5.sln`)](CPSC259_Lab5.sln) solution file can be opened in the <b>Visual Studio</b> software.
 
-Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reveals that the system path for (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`) is specified for the <b>C/C++ Additional Include Directories</b>.
+<b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
 
-Similarly, I modified the <b>Linker Additional Library Directories</b> to include (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`).
-
-The <b>Debugging Configuration</b> has the <b>Environment</b> set to (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`).
+<ul>
+    <li><b>C/C++->Additional Include Directories</b> : (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`)</li>
+    <li><b>Linker->Additional Library Directories</b> : (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`)</li>
+    <li><b>Debugging->Environment</b> : (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`)</li>
+</ul>
 
 <p align="center">
     <img src="Figures/VS_Configuration_Properties.JPG" width="50%" height="50%" title="Configuration Properties Window." >
@@ -59,7 +61,7 @@ The <b>PageRank</b> theory is based on the assumption that a hypothetical web su
 
 The connectivity matrix for the <b>PageRank</b> algorithm is parsed from the [(`web.txt`)](TakeHome/web.txt) file. The input contains a number of lines of binary values, where outgoing links from webpages are arranged in column-wise fashion.
 
-In Essence :
+In Essence :</br>
     *1* values indicate the presence of an outgoing link from page <i>j</i> to page <i>i</i>.</br>
     *0* values indicate the absence of an outgoing link from page <i>j</i> to page <i>i</i>.</br>
 
