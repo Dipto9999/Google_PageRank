@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "websolver.h": "c",
+        "string.h": "c"
+    }
+}
