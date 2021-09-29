@@ -27,7 +27,9 @@ I implemented a simplified version of the <b>Google PageRank</b> algorithm. This
 
 The source and header files were written to be compiled and run in the <b>Visual Studio 2019 IDE</b>. The [(`CPSC259_Lab5.sln`)](CPSC259_Lab5.sln) solution file can be opened in the <b>Visual Studio</b> software.
 
-Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reveals that the system path for (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`) is specified for the <b>C/C++ Additional Include Directories</b>. Similarly, I modified the <b>Linker Additional Library Directories</b> to include (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`). The <b>Debugging Configuration</b> has the <b>Environment</b> set to (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`)
+Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reveals that the system path for (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`) is specified for the <b>C/C++ Additional Include Directories</b></br>
+Similarly, I modified the <b>Linker Additional Library Directories</b> to include (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`).</br>
+The <b>Debugging Configuration</b> has the <b>Environment</b> set to (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`)
 
 <p align="center">
     <img src="Figures/VS_Configuration_Properties.JPG" width="50%" height="50%" title="Configuration Properties Window." >
@@ -103,6 +105,7 @@ Considering the <b>MATLAB</b> Variables :
 The <b>Power Method</b> accounts for the <b>Markov Chain</b> in the calculation by including the probability of choosing a random webpage. This multiplication is performed in an iterative fashion, until the <b>PageRank</b> stops changing. This yields the limiting probability that an infinitely dedicated web surfer accesses a given webpage.
 
 In order to do this, I executed the <b>MATLAB</b> command :
+
 ` while norm(ldivide(dim, (xCurr - xPrev))) > 0.01  xPrev = xCurr; xCurr = A * xCurr; end; `
 
 The current and previous <b>PageRank</b> values are compared in order to perform the necessary number of <b>PageRank</b> iterations.
@@ -139,14 +142,14 @@ This was originally completed as a final project for <b>CPSC 259 - Data Structur
 
 However, this project was heavily modified to deviate from the original submission and to respect course policies. In its current form, it is largely a personal exploration of the **C** language features as well as the mathematics of the <b>PageRank Algorithm</b>.
 
-The <b>MATLAB</b> commands executed to perform the <b>PageRank</b> calculations were heavily inspired by the <b>CPSC 259</b> course instructions, as well as from the following links:
+The <b>MATLAB</b> commands executed to perform the <b>PageRank</b> calculations were heavily inspired by the <b>CPSC 259</b> course instructions, as well as from the following sources:
 
 <ul>
     <li><b><a href = "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/pagerank.pdf">MATHWORKS PageRank Document</a></b></li>
     <li><b><a href = "https://www.youtube.com/watch?v=J_q2XjWyyGI&ab_channel=SamuliSiltanen">Samuli Siltanen Youtube Demonstration</a></b></li>
 </ul>
 
-The mathematical rationality behind eigenvectors powering the <b>PageRank</b> algorithm was further explored from the following links:
+The mathematical rationality behind eigenvectors powering the <b>PageRank</b> algorithm was further explored from the following sources:
 
 <ul>
     <li><b><a href = "https://www.dhruvonmath.com/2019/03/20/pagerank/">Dhruv On Math PageRank</a></b></li>
