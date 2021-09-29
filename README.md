@@ -30,9 +30,9 @@ The source and header files were written to be compiled and run in the <b>Visual
 <b>Configuration Properties</b> in the <b>VS Solution Explorer</b> :
 
 <ul>
-    <li><b>C/C++->Additional Include Directories : ...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)</b></li>
-    <li><b>Linker->Additional Library Directories: ...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</b></li>
-    <li><b>Debugging->Environment : PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)</b></li>
+    <li><b>C/C++->Additional Include Directories</b> : <i>...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)</i></li>
+    <li><b>Linker->Additional Library Directories</b> : <i>...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)</i></li>
+    <li><b>Debugging->Environment</b> : <i>PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)</i></li>
 </ul>
 
 <p align="center">
