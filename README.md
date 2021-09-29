@@ -1,4 +1,4 @@
-# Google PageRank
+# Google PageRank : MATLAB Engine for C
 
 ## Contents
 
@@ -27,9 +27,11 @@ I implemented a simplified version of the <b>Google PageRank</b> algorithm. This
 
 The source and header files were written to be compiled and run in the <b>Visual Studio 2019 IDE</b>. The [(`CPSC259_Lab5.sln`)](CPSC259_Lab5.sln) solution file can be opened in the <b>Visual Studio</b> software.
 
-Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reveals that the system path for (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`) is specified for the <b>C/C++ Additional Include Directories</b></br>
-Similarly, I modified the <b>Linker Additional Library Directories</b> to include (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`).</br>
-The <b>Debugging Configuration</b> has the <b>Environment</b> set to (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`)
+Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reveals that the system path for (`...\MATLAB\R2021a\extern\include;%(AdditionalIncludeDirectories)`) is specified for the <b>C/C++ Additional Include Directories</b>.
+
+Similarly, I modified the <b>Linker Additional Library Directories</b> to include (`...\MATLAB\R2021a\extern\lib\win64\microsoft;%(AdditionalLibraryDirectories)`).
+
+The <b>Debugging Configuration</b> has the <b>Environment</b> set to (`PATH=...\MATLAB\R2021a\bin\win64\$(LocalDebuggerEnvironment)`).
 
 <p align="center">
     <img src="Figures/VS_Configuration_Properties.JPG" width="50%" height="50%" title="Configuration Properties Window." >
@@ -67,12 +69,12 @@ I performed the parsing functionality in the [(`websolver.c`)](TakeHome/websolve
 
 I calculated the <b>PageRank</b> approximation by running the <b>MATLAB</b> command `x = mldivide((I - p * M * D), e);`.
 
-Considering the <b>MATLAB</b> Variables :
+Considering the <b>MATLAB</b> Variables :</br>
     `I` represents the identity matrix.</br>
     `p` represents the probability of following a hyperlink.</br>
     `M` represents the connectivity matrix.</br>
     `D` represents the sparse matrix with the probabilities of following an individual link from each webpage.</br>
-    `e` represents a 6x1 ones array which I called `mldivide` on to left divide the matrix result of `(I - p * M * D)`.</br>
+    `e` represents a 6x1 ones array, which `mldivide` is called on to left divide the matrix result of `(I - p * M * D)`.</br>
 
 In mathematical representation, we are solving for the variable <i>x</i> where <i>(I - p * M * D) * x = e</i>.
 
@@ -94,7 +96,7 @@ This method involves multiplying the <b>PageRank</b> by a <b>Transition Matrix</
 
 ` A = p * M * D + e * (((1 - p) * (colSums ~= 0) + (colSums == 0) )/ dim); `
 
-Considering the <b>MATLAB</b> Variables :
+Considering the <b>MATLAB</b> Variables :</br>
     `p` represents the probability of following a hyperlink.</br>
     `M` represents the connectivity matrix.</br>
     `D` represents the sparse matrix with the probabilities of following an individual link.</br>
@@ -122,7 +124,7 @@ Repeatedly multiplying the <b>Transition Matrix</b> by the <b>PageRank</b> can b
 
 ` A * x = A * A * x = A * A * A * x = lambda * x = x' `
 
-This is the mathematical formula for an eigenvector. From this, I deduced that the <b>PageRank Algorithm</b>, as calculated by the <b>Power Method</b>, represents a system that evolves after every step. The <b>Transition Matrix</b> pulls the <b>PageRank</b> towards the principal eigenvector. This is best viewed in this visual from the <b><a href = "https://setosa.io/ev/eigenvectors-and-eigenvalues/">Eigenvectors and Eigenvalues</a></b> web post.
+This is the mathematical formula for an eigenvector. From this, I deduced that the <b>PageRank Algorithm</b>, as calculated by the <b>Power Method</b>, represents a system that evolves after every step. The <b>Transition Matrix</b> pulls the <b>PageRank</b> towards the principal eigenvector. This is best viewed in the following visual. This is sourced from the <b><a href = "https://setosa.io/ev/eigenvectors-and-eigenvalues/">Eigenvectors and Eigenvalues</a></b> web post.
 
 <p align="center">
     <img src="Figures/Eigenvector_Visual.JPG" width="75%" height="75%" title="Eigenvector Visual." >
