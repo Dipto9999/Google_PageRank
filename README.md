@@ -41,7 +41,7 @@ The source and header files were written to be compiled and run in the <b>Visual
 
 ### MATLAB 2021a
 
-<b>MATLAB 2021a</b> was installed in order to perform matrix calculations in the <b>MATLAB Engine</b>. I made use of the <b>MATLAB</b> commands in the [(`pagerank.c`)](TakeHome/pagerank.c) source file in order to calculate the <b>PageRank Algorithm</b>. To ensure the intended performance of our **C** program, I also tested the <b>PageRank Algorithm</b> in the <b>MATLAB Command Window</b>.
+<b>MATLAB 2021a</b> was installed in order to perform matrix calculations in the <b>MATLAB Engine</b>. I made use of the <b>MATLAB</b> commands in the [(`pagerank.c`)](PageRank/pagerank.c) source file in order to calculate the <b>PageRank Algorithm</b>. To ensure the intended performance of our **C** program, I also tested the <b>PageRank Algorithm</b> in the <b>MATLAB Command Window</b>.
 
 ### Demonstration
 
@@ -59,13 +59,13 @@ The <b>PageRank</b> theory is based on the assumption that a hypothetical web su
 
 ### Connectivity Matrix
 
-The connectivity matrix for the <b>PageRank</b> algorithm is parsed from the [(`web.txt`)](TakeHome/web.txt) file. The input contains a number of lines of binary values, where outgoing links from webpages are arranged in column-wise fashion.
+The connectivity matrix for the <b>PageRank</b> algorithm is parsed from the [(`web.txt`)](PageRank/web.txt) file. The input contains a number of lines of binary values, where outgoing links from webpages are arranged in column-wise fashion.
 
 In Essence :</br>
     *1* values indicate the presence of an outgoing link from page <i>j</i> to page <i>i</i>.</br>
     *0* values indicate the absence of an outgoing link from page <i>j</i> to page <i>i</i>.</br>
 
-I performed the parsing functionality in the [(`websolver.c`)](TakeHome/websolver.c) source file.
+I performed the parsing functionality in the [(`websolver.c`)](PageRank/websolver.c) source file.
 
 ### Initial Approximation
 
