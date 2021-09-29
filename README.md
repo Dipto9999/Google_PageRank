@@ -15,7 +15,7 @@
         * [Transition Matrix](#Transition-Matrix)
     * [Principal Eigenvector](#Principal-Eigenvector)
 * [Credit](#Credit)
-    * [UBC Policy](#UBC-Policy)
+    * [Policy](#Policy)
 
 ## Overview
 
@@ -77,7 +77,7 @@ In mathematical representation, we are solving for the variable <i>x</i> where <
 After normalizing <i>x</i> with the <b>MATLAB</b> command `x = x/ sum(x);`, this yields the <b>PageRank</b> approximation for the probability of a random web surfer accessing each of the webpages.
 
 <p align="center">
-    <img src="Figures/Approximation.JPG" width="20%" height="20%" title="Approximate Calculation." >
+    <img src="Figures/Approximation.JPG" width="40%" height="40%" title="Approximate Calculation." >
 </p>
 
 The complete <b>MATLAB</b> output can be view in the [(`Approximation.pdf`)](Figures/Approximation.pdf) file.
@@ -128,7 +128,7 @@ This is the mathematical formula for an eigenvector. From this, I deduced that t
 To evaluate this, I calculated the principal eigenvector in the <b>MATLAB Engine</b>, as shown below.
 
 <p align="center">
-    <img src="Figures/Principal_Eigenvector.JPG" width="30%" height="30%" title="Principal Eigenvector Calculation." >
+    <img src="Figures/Principal_Eigenvector.JPG" width="40%" height="40%" title="Principal Eigenvector Calculation." >
 </p>
 
 The complete <b>MATLAB</b> output can be view in the [(`Principal_Eigenvector.pdf`)](Figures/Principal_Eigenvector.pdf) file.
@@ -154,6 +154,6 @@ The mathematical rationality behind eigenvectors powering the <b>PageRank</b> al
     <li><b><a href = "https://en.wikipedia.org/wiki/PageRank#Simplified_algorithm">PageRank Wikipedia</a></b></li>
 </ul>
 
-### UBC Policy
+### Policy
 
 I have read and understood the plagiarism policies at <a href = "http://www.cs.ubc.ca/~tmm/courses/cheat.html">http://www.cs.ubc.ca/~tmm/courses/cheat.html</a> and I understand that no excuse for plagiarism will be accepted.
