@@ -41,7 +41,7 @@ Viewing the <b>Configuration Properties</b> in the <b>Solution Explorer</b> reve
 
 The video in the [`Demonstration`](Demonstration) directory shows the <b>Power Method</b> calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
 
-https://user-images.githubusercontent.com/52113009/130340062-9a8ce61d-4a7d-486b-936f-363cfbcd9d2f.mp4
+https://user-images.githubusercontent.com/52113009/135350441-df83eab4-6f10-44e2-b53d-90ce41e05b6e.mp4
 
 ## PageRank Algorithm
 
