@@ -22,7 +22,7 @@
 
 I implemented a simplified version of the <b>Google PageRank</b> algorithm. This program was developed using the <a href = "https://www.mathworks.com/help/matlab/calling-matlab-engine-from-c-programs-1.html">**MATLAB Engine API for C**</a>.
 
-A matrix multiplication [project](MATLAB_Test) was built to become familiar with the **MATLAB Engine**.
+A [matrix multiplication](MATLAB_Test) project was built to become familiar with the **MATLAB Engine**.
 
 ## Installations
 
