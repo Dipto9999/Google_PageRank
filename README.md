@@ -7,6 +7,7 @@
     * [VS-2019](#Visual-Studio-2019)
     * [MATLAB-2021a](#MATLAB-2021a)
     * [Demonstration](#Demonstration)
+* [MATLAB Test](#MATLAB_Test)
 * [PageRank Algorithm](#PageRank-Algorithm)
     * [Markov Chain](#Markov-Chain)
     * [Connectivity Matrix](#Connectivity-Matrix)
@@ -20,6 +21,8 @@
 ## Overview
 
 I implemented a simplified version of the <b>Google PageRank</b> algorithm. This program was developed using the <a href = "https://www.mathworks.com/help/matlab/calling-matlab-engine-from-c-programs-1.html">**MATLAB Engine API for C**</a>.
+
+A matrix multiplication [project](MATLAB_Test) was built to become familiar with the **MATLAB Engine**.
 
 ## Installations
 
@@ -41,11 +44,11 @@ The source and header files were written to be compiled and run in the <b>Visual
 
 ### MATLAB 2021a
 
-<b>MATLAB 2021a</b> was installed in order to perform matrix calculations in the <b>MATLAB Engine</b>. I made use of the <b>MATLAB</b> commands in the [(`pagerank.c`)](PageRank/pagerank.c) source file in order to calculate the <b>PageRank Algorithm</b>. To ensure the intended performance of our **C** program, I also tested the <b>PageRank Algorithm</b> in the <b>MATLAB Command Window</b>.
+<b>MATLAB 2021a</b> was installed in order to perform matrix calculations in the **MATLAB Engine**. I made use of the <b>MATLAB</b> commands in the [(`pagerank.c`)](PageRank/pagerank.c) source file in order to calculate the <b>PageRank Algorithm</b>. To ensure the intended performance of our **C** program, I also tested the <b>PageRank Algorithm</b> in the <b>MATLAB Command Window</b>.
 
 ### Demonstration
 
-The video in the [`Demonstration`](Demonstration) directory shows the <b>Power Method</b> calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
+A video in the [`Demonstrations`](Demonstrations) directory shows the <b>Power Method</b> calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
 
 https://user-images.githubusercontent.com/52113009/135350441-df83eab4-6f10-44e2-b53d-90ce41e05b6e.mp4
 
@@ -55,7 +58,7 @@ I have designed a simplified version of <b><a href = "https://en.wikipedia.org/w
 
 ### Markov Chain
 
-The <b>PageRank</b> theory is based on the assumption that a hypothetical web surfer randomly clicks on hyperlinks to jump between webpages. This theoretical random walk is referred to as a <b>Markov Chain</b>. I have mathematically accounted for the probability that the random walk will follow the hyperlinks through a variable <i>p</i>. This is pivotal to calculate the <b>PageRank</b> through the <b>Power Method</b> in the <b>MATLAB Engine</b>.
+The <b>PageRank</b> theory is based on the assumption that a hypothetical web surfer randomly clicks on hyperlinks to jump between webpages. This theoretical random walk is referred to as a <b>Markov Chain</b>. I have mathematically accounted for the probability that the random walk will follow the hyperlinks through a variable <i>p</i>. This is pivotal to calculate the <b>PageRank</b> through the <b>Power Method</b> in the **MATLAB Engine**.
 
 ### Connectivity Matrix
 
@@ -132,7 +135,7 @@ This is the mathematical formula for an eigenvector. From this, I deduced that t
     <img src="Figures/Eigenvector_Visual.JPG" width="75%" height="75%" title="Eigenvector Visual." >
 </p>
 
-To evaluate this, I calculated the principal eigenvector in the <b>MATLAB Engine</b>, as shown below.
+To evaluate this, I calculated the principal eigenvector in the **MATLAB Engine**, as shown below.
 
 <p align="center">
     <img src="Figures/Principal_Eigenvector.JPG" width="35%" height="35%" title="Principal Eigenvector Calculation." >
@@ -142,7 +145,7 @@ The complete <b>MATLAB</b> output can be view in the [(`Principal_Eigenvector.pd
 
 ## Credit
 
-This was originally completed as a final project for <b>CPSC 259 - Data Structures and Algorithms for Electrical Engineers</b> course at the <b>University of British Columbia</b>. Unlike the other labs for this course, this program was created entirely from scratch.
+This was originally completed as a final project for <b>CPSC 259 - Data Structures and Algorithms for Electrical Engineers</b>, which is a course at the <b>University of British Columbia</b>. Unlike the other labs for this course, this program was created entirely from scratch.
 
 However, this project was heavily modified to deviate from the original submission and to respect course policies. In its current form, it is largely a personal exploration of the **C** language features as well as the mathematics of the <b>PageRank Algorithm</b>.
 

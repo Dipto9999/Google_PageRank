@@ -42,6 +42,8 @@ int main(void) {
  *          OTHERWISE FALSE
 */
 void runEngine(Engine *ep) {
+	if (!ep) return;
+
 	/* Local Variables */
 	size_t row = FALSE;
 	size_t column = FALSE;
@@ -49,7 +51,7 @@ void runEngine(Engine *ep) {
 
 	FILE *web_file = NULL;
 
-	/* Pointers to MATLAB Data Arrays. */
+	/* Pointers to MATLAB Arrays. */
 	mxArray *connectivity_array = NULL;
 	mxArray *pagerank_result = NULL;
 
@@ -158,9 +160,9 @@ void retrieveVariables(Engine *ep) {
  * RETURN: VOID
 */
 void promptPageRank(Engine* ep) {
-	int calculation_config = FALSE;
-
 	if (!ep) return;
+
+	int calculation_config = FALSE;
 
 	strcpy_s(message_console, LARGE_STRING_SIZE, "\n\nEnter the Configuration Type: (");
 
@@ -359,11 +361,11 @@ void calculatePrincipalEigenVector(Engine *ep) {
  * RETURN: VOID
  */
 void printPageRank(Engine *ep, mxArray *pagerank, size_t size_pagerank) {
+	if (!ep) return;
+
 	/* Local Variables */
 	size_t page_index = 0;
 	mxDouble* data_pagerank = mxGetPr(pagerank);
-
-	if (!ep) return;
 
 	fprintf(stdout, "\nPageRank Retrieved :\n\n");
 	for (page_index = 0; page_index < size_pagerank; page_index++) {

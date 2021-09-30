@@ -16,6 +16,7 @@
 #include <string.h>
 #include <math.h>
 
+#include "engine.h"
 #include "websolver.h"
 
 /***************************/

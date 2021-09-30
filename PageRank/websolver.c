@@ -88,11 +88,11 @@ void parseMatrix(FILE* web_file, size_t dimension, double** matrix) {
  * RETURN: VOID
  */
 void printMatrix(Engine *ep, mxArray *test_array, size_t numrows, size_t numcols) {
+	if (!ep) return;
+
 	/* Local Variables */
 	size_t column = 0;
 	size_t row = 0;
-
-	if (!ep) return;
 
 	fprintf(stdout, "\nMatrix Retrieved :\n\n");
 	for (row = 0; row < numrows; row++) {

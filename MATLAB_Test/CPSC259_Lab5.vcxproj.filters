@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="inlab.c">
+    <ClCompile Include="matrix_multiply.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inlab.h">
+    <ClInclude Include="matrix_multiply.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -182,10 +182,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="inlab.c" />
+    <ClCompile Include="matrix_multiply.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inlab.h" />
+    <ClInclude Include="matrix_multiply.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
