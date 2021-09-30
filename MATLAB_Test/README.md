@@ -36,11 +36,11 @@ The `Engine*` pointer datatype is used to start the **MATLAB Process** with the 
 Engine *ep = engOpen(NULL);
 ```
 
-For our purposes, we have implemented functions with sanity checks to ensure that our `Engine*` pointer variable `ep` is not *NULL*. To do this, we include the **C** syntax `if (!ep) return;`.
+For our purposes, we have implemented functions with sanity checks to ensure that our `Engine*` pointer variable `ep` is not *NULL*. To do this, we include the line `if (!ep) return;`.
 
 `ep` is also passed as a parameter in the other **API** function calls. This provides us access to our **MATLAB Engine** variables.
 
-After completing our matrix calculations and accessing our **MATLAB Engine**, we shut down the process by calling `engClose(ep)`. If this goes as intended, the function should return *NULL*.
+After completing our matrix calculations, we shut down the **MATLAB Process** by calling `engClose(ep)`. If this goes as intended, the function should return *NULL*.
 
 #### Arrays
 
