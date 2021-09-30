@@ -144,7 +144,7 @@ This prevents dynamic memory issues (e.g. danging pointers).
 
 A video in the [`Demonstrations`](Demonstrations) directory shows the matrix multiplication calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
 
-https://user-images.githubusercontent.com/52113009/135350441-df83eab4-6f10-44e2-b53d-90ce41e05b6e.mp4
+https://user-images.githubusercontent.com/52113009/135540329-faf84d51-b901-4208-8bdb-1ac2716bb15e.mp4
 
 ## Credit
 
