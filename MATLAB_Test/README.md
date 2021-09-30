@@ -78,7 +78,8 @@ Since <b>MATLAB</b> stores its two-dimensional array data in a column-wise rathe
 ### Commands
 
 After, we initialize the **MATLAB** data arrays in our **C** program,
-we put variables in the **MATLAB Engine** with the line: `engPutVariable(ep, "arrayOne", array_one);`.
+we put variables in the **MATLAB Engine** with the line: </br>
+`engPutVariable(ep, "arrayOne", array_one);`.
 
 Assuming, we have another similarly defined and initialized **MATLAB** array with the variable name `arrayTwo`, we can perform matrix multiplication by executing **MATLAB** commands from **C** program and then receive the results. This procedure is shown below:</br>
 
@@ -139,7 +140,7 @@ data_array_one = NULL;
 
 This prevents dynamic memory issues (e.g. danging pointers).
 
-### Demonstration
+## Demonstration
 
 A video in the [`Demonstrations`](Demonstrations) directory shows the matrix multiplication calculation when running the program on <b>Visual Studio</b>. I have embedded a low resolution compressed version below.
 
