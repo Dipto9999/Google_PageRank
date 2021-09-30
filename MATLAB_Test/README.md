@@ -90,7 +90,7 @@ array_product = engGetVariable(ep, "arrayProduct");
 
 Note that we cannot pass the `\` character in the parameter for the **MATLAB** command, when calling the `engEvalString(...)` function.
 
-In our **PageRank Algorithm**, we must execute the **MATLAB** command to iteratively calculate the <b>Power Method</b>. To do this, it must be written in code as :</br>
+In our **PageRank Algorithm**, we must iteratively calculate the <b>Power Method</b>. To do this, the **MATLAB** command must be executed as :</br>
 
 ```c
 while norm(ldivide(dim, (xCurr - xPrev))) > 0.01  xPrev = xCurr; xCurr = A * xCurr; end;
