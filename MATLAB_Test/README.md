@@ -8,10 +8,10 @@
         * [Engine](#Engine)
         * [Arrays](#Arrays)
             * [Elements](#Elements)
-            * [Memory Management](#Memory-Management)
     * [Commands](#Commands)
         * [Display](#Display)
         * [Variables](#Variables)
+    * [Memory Management](#Memory-Management)
 * [Demonstration](#Demonstration)
 * [Credit](#Credit)
     * [Policy](#Policy)
@@ -36,7 +36,7 @@ The `Engine*` pointer datatype is used to start the **MATLAB Process** with the 
 Engine *ep = engOpen(NULL);
 ```
 
-For our purposes, we have implemented functions with sanity checks to ensure that our `Engine*` pointer variable `ep` is not *NULL*. This is done with the following line of code: `if (!ep) return;`
+For our purposes, we have implemented functions with sanity checks to ensure that our `Engine*` pointer variable `ep` is not *NULL*. To do this, we include the **C** syntax `if (!ep) return;`.
 
 `ep` is also passed as a parameter in the other **API** function calls. This provides us access to our **MATLAB Engine** variables.
 
@@ -44,7 +44,7 @@ After completing our matrix calculations and accessing our **MATLAB Engine**, we
 
 #### Arrays
 
-The `mxArray*` pointer datatype is used to provide access to the **MATLAB** array. We allocate memory for the array in **MATLAB** with the following syntax : </br>
+The `mxArray*` pointer datatype is used to provide access to the **MATLAB** array. We allocate memory for the array in **MATLAB** with the following syntax :</br>
 
 ```c
 mxArray* array_one = mxCreateDoubleMatrix(
@@ -54,11 +54,12 @@ mxArray* array_one = mxCreateDoubleMatrix(
                       );
 ```
 
-We also use it to provide sanity checks that the **MATLAB** arrays store data as double-precision, floating-point numbers, with the line : `if (mxIsDouble(array_one)) ...`
+We also use it to provide sanity checks that the **MATLAB** arrays store data as double-precision, floating-point numbers, with the line :</br>
+`if (mxIsDouble(array_one)) ...`
 
 #### Elements
 
-The `mxDouble*` pointer datatype is used to provide access to the first `mxDouble` element in the **MATLAB** data arrays that are defined. Considering our previous example, this is accomplished with the syntax: `mxDouble* data_array_one = mxGetPr(array_one);`</br>
+The `mxDouble*` pointer datatype is used to provide access to the first `mxDouble` element in the **MATLAB** data arrays. Considering our previous example, this is accomplished with the syntax: `mxDouble* data_array_one = mxGetPr(array_one);`</br>
 
 This provides the ability to initialize the data array in the **C** program. We iterate through the data array elements, as shown below:</br>
 
@@ -73,19 +74,6 @@ for (row = 0; row < DIMENSION; row++) {
 ```
 
 Since <b>MATLAB</b> stores its two-dimensional array data in a column-wise rather than row-wise arrangement, we must account for this in our data initialization.
-
-#### Memory Management
-
-After we've concluded our work with the **MATLAB** arrays, we deallocate the memory for the `mxArrays` in **MATLAB**.
-We must also assign the `mxArray*` and `mxDouble*` pointers to *NULL*, with the following lines of code:</br>
-
-```c
-mxDestroyArray(array_one);
-array_one = NULL;
-data_array_one = NULL;
-```
-
-This prevents dynamic memory issues (e.g. danging pointers).
 
 ### Commands
 
@@ -115,7 +103,7 @@ while norm((xCurr - xPrev).\ dim) > 0.01  xPrev = xCurr; xCurr = A * xCurr; end;
 
 ### Variables
 
-The `whos` **MATLAB** command allows us to generate a list of the variables along with their sizes and types. This requires specifying an output buffer for the **MATLAB Engine** to retrieve the variable data. Afterwards, we can print the buffer contents with the following **C** syntax.
+The `whos` **MATLAB** command allows us to generate a list of the variables along with their sizes and types. This requires specifying an output buffer to receive the variable data. Afterwards, we can print the buffer contents with the following **C** syntax.
 
 ```c
 engOutputBuffer(ep, buffer, SIZE_BUFF);
@@ -137,6 +125,19 @@ for (row = 0; row < dimension; row++) {
 	printf("\n");
 }
 ```
+
+## Memory Management
+
+After we've concluded our work with the **MATLAB** arrays, we deallocate the memory for the `mxArrays` in **MATLAB**.
+We must also assign the `mxArray*` and `mxDouble*` pointers to *NULL*, with the following lines of code:</br>
+
+```c
+mxDestroyArray(array_one);
+array_one = NULL;
+data_array_one = NULL;
+```
+
+This prevents dynamic memory issues (e.g. danging pointers).
 
 ### Demonstration
 
