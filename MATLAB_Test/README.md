@@ -81,7 +81,7 @@ After, we initialize the **MATLAB** data arrays in our **C** program,
 we put variables in the **MATLAB Engine** with the line: </br>
 `engPutVariable(ep, "arrayOne", array_one);`.
 
-Assuming, we have another similarly defined and initialized **MATLAB** array with the variable name `arrayTwo`, we can perform matrix multiplication by executing **MATLAB** commands from **C** program and then receive the results. This procedure is shown below:</br>
+Assuming, we initialized another **MATLAB** array with variable name `arrayTwo`, we can perform matrix multiplication by executing **MATLAB** commands from **C** program and then receive the results. This procedure is shown below:</br>
 
 ```c
 engEvalString(ep, "arrayProduct = arrayOne * arrayTwo");
