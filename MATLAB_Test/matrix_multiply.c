@@ -154,19 +154,22 @@ void printMatrix(Engine *ep, mxArray *test_array, size_t dimension) {
  * RETURN: VOID
  */
 void retrieveVariables(Engine *ep) {
+	if (!ep) return;
+
 	char buffer[SIZE_BUFF + 1];
 
-	if (!ep) return;
-	else if (engOutputBuffer(ep, buffer, SIZE_BUFF)) retrieveError("\nCan't Create Buffer For MATLAB Output.\n");
+	if (engOutputBuffer(ep, buffer, SIZE_BUFF)) retrieveError("\nCan't Create Buffer For MATLAB Output.\n");
+	else buffer[SIZE_BUFF] = '\0';
 
 	printf("\n****Retrieve Engine Variables****\n");
 
 	buffer[SIZE_BUFF] = '\0';
 
 	printf("\nEngine Variables :\n\n");
-	/* Generate a List of MATLAB Variables With Sizes and Types. */
-	engEvalString(ep, "whos");
-	printf("%s\n", buffer);
+
+	/* Generate a List of MATLAB Variables With Types and Sizes. */
+	if (engEvalString(ep, "whos")) retrieveError("\nCould Not Retrieve MATLAB Variables.\n");
+	else fprintf(stdout, "%s\n", buffer);
 }
 
 /*

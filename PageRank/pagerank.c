@@ -162,6 +162,7 @@ void retrieveVariables(Engine *ep) {
 	fprintf(stdout, "____________________________\n");
 
 	fprintf(stdout, "\nEngine Variables :\n\n");
+
 	/* Generate a List of MATLAB Variables With Types and Sizes. */
 	if (engEvalString(ep, "whos")) handleError("\nCould Not Retrieve MATLAB Variables.\n");
 	else fprintf(stdout, "%s\n", buffer);
