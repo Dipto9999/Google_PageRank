@@ -110,14 +110,18 @@ void runEngine(Engine *ep) {
 
 	retrieveVariables(ep);
 
-	/* Deallocate Memory for Matrix. */
-	free(connectivity_matrix);
+	if (connectivity_matrix != NULL) {
+		/* Deallocate Memory for Matrix. */
+		for (row = 0; row < dimension; row++) free(connectivity_matrix[row]);
+		free(connectivity_matrix);
+	}
 
 	/* Deallocate Memory For mxArrays. */
 	mxDestroyArray(connectivity_array);
 	mxDestroyArray(pagerank_result);
 
 	/* Prevent Dangling Pointers. */
+	connectivity_matrix = NULL;
 	connectivity_array = NULL;
 	pagerank_result = NULL;
 
