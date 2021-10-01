@@ -23,8 +23,7 @@
 /* Preprocessor Directives */
 /***************************/
 
-#define SMALL_STRING_SIZE 10
-#define LARGE_STRING_SIZE 100
+#define BUFFSIZE 512
 
 /***********************/
 /**** Enumerations ****/
@@ -40,8 +39,8 @@ enum PAGERANK_METHODS {
 /**** Declare Variables ****/
 /***************************/
 
-extern char buffer[];
-extern char message_console[];
+extern char input_buff[];
+extern char output_buff[];
 
 /***********************/
 /* Function Prototypes */
@@ -50,7 +49,7 @@ extern char message_console[];
 void runEngine(Engine *ep);
 void retrieveVariables(Engine* ep);
 
-void promptPageRank(Engine* ep);
+int getCalculationMethod(Engine* ep);
 void calculatePageRank(Engine *ep, int calculation_method);
 
 /* MATLAB Calculations */

@@ -2,6 +2,7 @@
     "files.associations": {
         "stdlib.h": "c",
         "websolver.h": "c",
-        "mazesolver.h": "c"
+        "mazesolver.h": "c",
+        "pagerank.h": "c"
     }
 }

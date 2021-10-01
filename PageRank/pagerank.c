@@ -9,8 +9,9 @@
 #include "pagerank.h"
 
 /* Static Variables */
-static char buffer[SMALL_STRING_SIZE];
-static char message_console[LARGE_STRING_SIZE];
+static char input_buff[BUFFSIZE];
+static char input_extra[BUFFSIZE];
+static char output_buff[BUFFSIZE];
 
 /*
  * Main Function Drives the Program.
@@ -21,12 +22,10 @@ static char message_console[LARGE_STRING_SIZE];
  *          OTHERWISE FALSE
 */
 int main(void) {
-	int restatus;
-
 	/* Start a MATLAB Process and Assign to a MATLAB Engine Object Pointer. */
-	Engine *ep = engOpenSingleUse(NULL, NULL, &restatus);
+	Engine *ep = engOpen(NULL);
 
-	if (ep && restatus == 0) runEngine(ep);
+	if (ep) runEngine(ep);
 	else handleError("\nCan't Start MATLAB Engine.\n");
 
 	system("pause");
@@ -45,11 +44,13 @@ void runEngine(Engine *ep) {
 	if (!ep) return;
 
 	/* Local Variables */
+	FILE *web_file = NULL;
+
 	size_t row = FALSE;
 	size_t column = FALSE;
 	size_t dimension = FALSE;
 
-	FILE *web_file = NULL;
+	int calculation_method = FALSE;
 
 	/* Pointers to MATLAB Arrays. */
 	mxArray *connectivity_array = NULL;
@@ -101,13 +102,25 @@ void runEngine(Engine *ep) {
 	if (!connectivity_array) handleError("\nFailed to Retrieve Connectivity Matrix.\n");
 	else printMatrix(ep, connectivity_array, sqrt(mxGetNumberOfElements(connectivity_array)), sqrt(mxGetNumberOfElements(connectivity_array)));
 
-	promptPageRank(ep);
+	calculation_method = getCalculationMethod(ep);
 
-	pagerank_result = engGetVariable(ep, "x");
+	/* Prompt User for PageRank Calculations Until They Wish to Exit Program. */
+	while (calculation_method != FALSE) {
+		calculatePageRank(ep, calculation_method);
 
-	if (!pagerank_result) handleError("\nFailed to Retrieve PageRank Calculation.\n");
-	else printPageRank(ep, pagerank_result, mxGetNumberOfElements(pagerank_result));
+		pagerank_result = engGetVariable(ep, "x");
 
+		if (!pagerank_result) handleError("\nFailed to Retrieve PageRank Calculation.\n");
+		else printPageRank(ep, pagerank_result, mxGetNumberOfElements(pagerank_result));
+
+		/* Put Connectivity Matrix in MATLAB Engine. */
+		if (engEvalString(ep, "clear;")) handleError("\nCould Not Clear MATLAB Engine.\n");
+		if (engPutVariable(ep, "M", connectivity_array)) handleError("\nCannot Write Array to MATLAB.\n");
+
+		calculation_method = getCalculationMethod(ep);
+	}
+
+	fprintf(stdout, "\n\nExiting Program...\n\n");
 	retrieveVariables(ep);
 
 	if (connectivity_matrix != NULL) {
@@ -137,21 +150,21 @@ void runEngine(Engine *ep) {
  * RETURN: VOID
  */
 void retrieveVariables(Engine *ep) {
+	if (!ep) return;
+
 	char buffer[OUTPUT_BUFF + 1];
 
-	if (!ep) return;
-	else if (engOutputBuffer(ep, buffer, OUTPUT_BUFF)) handleError("\nCan't Create Buffer For MATLAB Output.\n");
+	if (engOutputBuffer(ep, buffer, OUTPUT_BUFF)) handleError("\nCan't Create Buffer For MATLAB Output.\n");
+	else buffer[OUTPUT_BUFF] = '\0';
 
 	fprintf(stdout, "____________________________\n");
 	fprintf(stdout, "\nRetrieve Engine Variables...\n");
 	fprintf(stdout, "____________________________\n");
 
-	buffer[OUTPUT_BUFF] = '\0';
-
 	fprintf(stdout, "\nEngine Variables :\n\n");
 	/* Generate a List of MATLAB Variables With Types and Sizes. */
-	engEvalString(ep, "whos");
-	fprintf(stdout, "%s\n", buffer);
+	if (engEvalString(ep, "whos")) handleError("\nCould Not Retrieve MATLAB Variables.\n");
+	else fprintf(stdout, "%s\n", buffer);
 }
 
 /*
@@ -161,36 +174,48 @@ void retrieveVariables(Engine *ep) {
  * POST: user is prompted for pagerank calculation configuration
  * 		 in standard output terminal; pagerank calculations performed
  * 		 in MATLAB according to chosen calculation method.
- * RETURN: VOID
+ * RETURN: configuration for pagerank calculation method
 */
-void promptPageRank(Engine* ep) {
-	if (!ep) return;
+int getCalculationMethod(Engine* ep) {
+	if (!ep) return ERROR;
 
 	int calculation_config = FALSE;
 
-	strcpy_s(message_console, LARGE_STRING_SIZE, "\n\nEnter the Configuration Type: (");
+	do {
+		strcpy_s(output_buff, BUFFSIZE, "\n\nEnter the Configuration Type:\n ");
 
-	buffer[0] = '0' + INITIAL_APPROXIMATION;
-	strncat_s(message_console, LARGE_STRING_SIZE, buffer, sizeof(char));
-	strcat_s(message_console, LARGE_STRING_SIZE, " - ");
+		input_buff[0] = '0' + INITIAL_APPROXIMATION;
+		strncat_s(output_buff, BUFFSIZE, input_buff, sizeof(char));
+		strcat_s(output_buff, BUFFSIZE, " For Initial Approximation...\n ");
 
-	buffer[0] = '0' + PRINCIPAL_EIGENVECTOR;
-	strncat_s(message_console, LARGE_STRING_SIZE, buffer, sizeof(char));
-	strcat_s(message_console, LARGE_STRING_SIZE, ") : ");
+		input_buff[0] = '0' + POWER_METHOD;
+		strncat_s(output_buff, BUFFSIZE, input_buff, sizeof(char));
+		strcat_s(output_buff, BUFFSIZE, " For Power Method...\n ");
 
-	fprintf(stdout, message_console);
+		input_buff[0] = '0' + PRINCIPAL_EIGENVECTOR;
+		strncat_s(output_buff, BUFFSIZE, input_buff, sizeof(char));
+		strcat_s(output_buff, BUFFSIZE, " For Principal EigenVector...\n ");
 
-	if (fgets(buffer, sizeof(char) + sizeof('\n'), stdin)) buffer[1] = '\0';
-	if (sscanf_s(buffer, "%d", &calculation_config) != TRUE) handleError("\nPageRank Initialization Failed.\n");
+		input_buff[0] = '0' + FALSE;
+		strncat_s(output_buff, BUFFSIZE, input_buff, sizeof(char));
+		strcat_s(output_buff, BUFFSIZE, " To Exit Program...\n\n Enter Configuration : ");
 
-	calculatePageRank(ep, calculation_config);
+		fprintf(stdout, output_buff);
+
+		if (!fgets(input_buff, BUFFSIZE, stdin)) handleError("\n\nExiting Program...\n\n");
+	} while
+		((sscanf_s(input_buff, "%d%s", &calculation_config, input_extra, BUFFSIZE) != TRUE)
+		|| (calculation_config < FALSE)
+		|| (calculation_config > PRINCIPAL_EIGENVECTOR));
+
+	return calculation_config;
 }
 
 /*
  * Select the PageRank Method to Calculate Based on User Configuration.
  * PARAM: ep is an Engine pointer to a MATLAB process.
- * PARAM: calculation_method is an int representing the configuration for
- * 		  the pagerank calculation to perform in the MATLAB engine.
+ * PARAM: calculation_method is an int representing the MATLAB commands to
+ * 		  execute to calculate the pagerank.
  * PRE: MATLAB engine successfully opened.
  * POST: appropriate calculation method is performed in MATLAB engine.
  * RETURN: VOID
@@ -198,7 +223,7 @@ void promptPageRank(Engine* ep) {
 void calculatePageRank(Engine *ep, int calculation_method) {
 	if (!ep) return;
 
-	else if (calculation_method == INITIAL_APPROXIMATION) calculateApproximation(ep);
+	if (calculation_method == INITIAL_APPROXIMATION) calculateApproximation(ep);
 	else if (calculation_method == POWER_METHOD) calculatePowerMethod(ep);
 	else if (calculation_method == PRINCIPAL_EIGENVECTOR) calculatePrincipalEigenVector(ep);
 	else handleError("\nInvalid PageRank Calculation.\n");
@@ -373,7 +398,7 @@ void printPageRank(Engine *ep, mxArray *pagerank, size_t size_pagerank) {
 
 	fprintf(stdout, "\nPageRank Retrieved :\n\n");
 	for (page_index = 0; page_index < size_pagerank; page_index++) {
-		fprintf(stdout, "PAGE : %i ", page_index + 1);
+		fprintf(stdout, "PAGE : %i ", (int)(page_index + 1));
 		fprintf(stdout, "RANK : %.4f\n", data_pagerank[page_index]);
 	}
 	fprintf(stdout, "\n");
